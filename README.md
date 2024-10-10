@@ -2,6 +2,10 @@
 
 How to create a gated group chat through an admin bot using [MessageKit](https://messagekit.ephemerahq.com/)
 
+## Create a group
+
+Create a group caht and add the bot as one of the members. Be sure in the permissions you don't allow non-admin members to add members
+
 ## Set up a bot as an admin
 
 Set up the `KEY` environment variable with the bot private key. Be sure this bot has `admin` privileges in the group.
