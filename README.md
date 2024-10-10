@@ -32,11 +32,22 @@ curl -X POST http://localhost:3000/add-wallet \
 
 ## Logic
 
+Declare the logic that will process the request. This could be holding an NFT for example.
+
+```tsx
+function verifiedRequest(walletAddress: string, groupId: string): boolean {
+  console.log("new-request", {
+    groupId,
+    walletAddress,
+  });
+  if (1 == 1) {
+    return true;
+  }
+  return false;
+}
+```
+
 ## Running locally
-
-Follow the steps below to run the app
-
-### Set up
 
 ```bash [cmd]
 # Clone the repo
