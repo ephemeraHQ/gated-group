@@ -1,6 +1,6 @@
 # Gated group template
 
-This is a tutorial on how to create a gated group chat through an admin bot using [MessageKit](https://messagekit.ephemerahq.com/)
+How to create a gated group chat through an admin bot using [MessageKit](https://messagekit.ephemerahq.com/)
 
 ## Set up a bot as an admin
 
