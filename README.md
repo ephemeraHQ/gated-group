@@ -2,12 +2,22 @@
 
 This is tutorial on how to created a gated group chat using MessageKit
 
-## Get the groupId
+## Set up a bot as admin
+
+Set up the `KEY` environment variable with the bot key. Be sure this bot has admin privileges in the group.
+
+## Get the `groupId`
 
 After creating the group you can ping this bot with "/id" and it will log the id of the current group
 
-```
+```bash
 /groupid
+```
+
+This will log in the console:
+
+```bash
+This group id is: 1242...2323
 ```
 
 ## Endpoint
@@ -30,19 +40,11 @@ Follow the steps below to run the app
 
 ```bash [cmd]
 # Clone the repo
-git clone https://github.com/ephemeraHQ/message-kit
+git clone https://github.com/ephemeraHQ/gated-group
 # Go to the example folder
-cd examples/gated
+cd gated-group
 # Install the dependencies
-yarn install
+bun install
 # Run the app
-yarn dev
-```
-
-### Variables
-
-Set up these variables in your app
-
-```bash [cmd]
-KEY= # 0x... the private key of the bot wallet (with the 0x prefix)
+bun dev
 ```

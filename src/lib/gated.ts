@@ -2,24 +2,16 @@
 import express from "express";
 import { Client } from "@xmtp/mls-client";
 
-function verifiedRequest(walletAddress: string, groupId: string): boolean {
-  console.log("new-request", {
-    groupId,
-    walletAddress,
-  });
-  if (1 == 1) {
-    return true;
-  }
-  return false;
-}
-
-export function startServer(client: Client) {
+export function startServer(
+  client: Client,
+  verifiedRequest: (walletAddress: string, groupId: string) => boolean
+) {
   const app = express();
   app.use(express.json());
 
   async function addWalletToGroup(
     walletAddress: string,
-    groupId: string,
+    groupId: string
   ): Promise<string> {
     if (!walletAddress) {
       throw new Error("Wallet address is required");
@@ -27,8 +19,9 @@ export function startServer(client: Client) {
       throw new Error("Group id is required");
     }
 
-    const conversation =
-      await client.conversations.getConversationById(groupId);
+    const conversation = await client.conversations.getConversationById(
+      groupId
+    );
 
     if (!verifiedRequest(walletAddress, groupId)) {
       throw new Error("Request not verified");
