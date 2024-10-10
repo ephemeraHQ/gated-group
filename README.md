@@ -59,3 +59,7 @@ bun install
 # Run the app
 bun dev
 ```
+
+---
+
+This template is powered by [MessageKit](https://messagekit.ephemerahq.com/)
