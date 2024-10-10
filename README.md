@@ -4,7 +4,7 @@ This is tutorial on how to created a gated group chat using MessageKit
 
 ## Set up a bot as admin
 
-Set up the `KEY` environment variable with the bot key. Be sure this bot has admin privileges in the group.
+Set up the `KEY` environment variable with the bot private key. Be sure this bot has `admin` privileges in the group.
 
 ## Get the `groupId`
 
