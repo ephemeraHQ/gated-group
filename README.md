@@ -32,7 +32,7 @@ curl -X POST http://localhost:3000/add-wallet \
 
 ## Logic
 
-Declare the logic that will process the request. This could be holding an NFT for example.
+Declare the logic that will process the request.
 
 ```tsx
 function verifiedRequest(walletAddress: string, groupId: string): boolean {
@@ -41,6 +41,10 @@ function verifiedRequest(walletAddress: string, groupId: string): boolean {
     walletAddress,
   });
   if (1 == 1) {
+    // Holding a certain NFT or Token
+    // Defining a web3 social criteria like amount of followers
+    // Onchain activity
+    // Much more!
     return true;
   }
   return false;
