@@ -1,4 +1,4 @@
-# Gated Group Example
+# Gated Group Template
 
 This is tutorial on how to created a gated group chat using MessageKit
 
