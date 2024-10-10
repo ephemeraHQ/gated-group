@@ -12,7 +12,9 @@ Set up the `KEY` environment variable with the bot private key. Be sure this bot
 
 ## Get the `groupId`
 
-After creating the group you can ping this bot with "/id" and it will log the id of the current group
+After creating the group you can send a command to the bot and it will log the id of the current group
+
+Command:
 
 ```bash
 /groupid
