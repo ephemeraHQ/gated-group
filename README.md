@@ -1,8 +1,8 @@
-# Gated Group Template
+# Gated group template
 
-This is tutorial on how to created a gated group chat using MessageKit
+This is a tutorial on how to create a gated group chat through an admin bot using [MessageKit](https://messagekit.ephemerahq.com/)
 
-## Set up a bot as admin
+## Set up a bot as an admin
 
 Set up the `KEY` environment variable with the bot private key. Be sure this bot has `admin` privileges in the group.
 
@@ -22,7 +22,7 @@ This group id is: 1242...2323
 
 ## Endpoint
 
-One you start the server on your port `3000` by default you can ping this endpoing with the parameters
+Once you start the server on your port `3000` by default you can ping this endpoint with the parameters
 
 ```bash
 curl -X POST http://localhost:3000/add-wallet \
@@ -59,7 +59,3 @@ bun install
 # Run the app
 bun dev
 ```
-
----
-
-This template is powered by [MessageKit](https://messagekit.ephemerahq.com/)
