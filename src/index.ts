@@ -24,7 +24,7 @@ run(async (context: HandlerContext) => {
       );
 
       await context.send(
-        `Group created!\n- Group Frame URL: https://converse.xyz/group/${group.id}: \n- This url will deelink to the group inside Converse\n- Once in the other group you can share the invite with your friends.`
+        `Group created!\n- ID: ${group.id}\n- Group Frame URL: https://converse.xyz/group/${group.id}: \n- This url will deelink to the group inside Converse\n- Once in the other group you can share the invite with your friends.`
       );
       return;
     }
