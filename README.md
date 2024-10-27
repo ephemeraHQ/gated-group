@@ -31,14 +31,14 @@ Declare the logic that will process the request.
 export async function verifiedRequest() {
   /*more code */
   const nfts = await alchemy.nft.getNftsForOwner(walletAddress);
-  console.log("nfts", nfts.ownedNfts.length);
-  const collectionSlug = "xmtpeople"; // The slug for the collection
+  const collectionSlug = "XMTPeople"; // The slug for the collection
 
   const ownsNft = nfts.ownedNfts.some(
     (nft: any) =>
-      nft.contract.address.toLowerCase() === collectionSlug.toLowerCase()
+      nft.contract.name.toLowerCase() === collectionSlug.toLowerCase()
   );
-  console.log("ownsNft", ownsNft);
+  console.log(`NFTs owned on ${Network.BASE_MAINNET}:`, nfts.ownedNfts.length);
+  console.log("is the nft owned: ", ownsNft);
   return ownsNft as boolean;
 }
 ```
