@@ -33,7 +33,7 @@ Once you start the server on your port `3000` by default you can ping this endpo
 ```bash
 curl -X POST http://localhost:3000/add-wallet \
  -H "Content-Type: application/json" \
- -d '{"walletAddress": "your_wallet", "groupId": "your_groupId"}'
+ -d '{"walletAddress": "0x7E0b0363404751346930AF92C80D1fef932Cc48a", "groupId": "2bc1d20d2e7ac190bcaff3bba0f012b3"}'
 ```
 
 ## Logic

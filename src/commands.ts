@@ -3,11 +3,19 @@ import type { CommandGroup } from "@xmtp/message-kit";
 export const commands: CommandGroup[] = [
   {
     name: "Group Id",
-    triggers: ["/groupid"],
-    description: "Get group id.",
+    description: "Create and get group id.",
     commands: [
       {
-        command: "/groupid",
+        command: "/create group",
+        triggers: ["/create"],
+        adminOnly: true,
+        params: {},
+        description: "Create a new group.",
+      },
+      {
+        command: "/id",
+        triggers: ["/id"],
+        adminOnly: true,
         params: {},
         description: "Get group id.",
       },

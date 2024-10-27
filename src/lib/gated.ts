@@ -1,14 +1,11 @@
 // Import necessary modules
 import express from "express";
-import { Client } from "@xmtp/mls-client";
+import { Client } from "@xmtp/node-sdk";
 
 export function startServer(
   client: Client,
-  verifiedRequest: (walletAddress: string, groupId: string) => boolean
+  verifiedRequest: (walletAddress: string, groupId: string) => Promise<boolean>
 ) {
-  const app = express();
-  app.use(express.json());
-
   async function addWalletToGroup(
     walletAddress: string,
     groupId: string
@@ -27,11 +24,17 @@ export function startServer(
       throw new Error("Request not verified");
     }
     console.log(`Adding wallet address: ${walletAddress} to the group`);
-    await conversation?.addMembers([walletAddress]);
-    return `Wallet address ${walletAddress} added to the group`;
+    try {
+      await conversation?.addMembers([walletAddress]);
+      return `Wallet address ${walletAddress} added to the group`;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
   }
 
-  // Endpoint to add wallet address to a group
+  // Endpoint to add wallet address to a group from an external source
+  const app = express();
+  app.use(express.json());
   app.post("/add-wallet", async (req, res) => {
     try {
       const { walletAddress, groupId } = req.body;
@@ -41,7 +44,6 @@ export function startServer(
       res.status(400).send(error.message);
     }
   });
-
   // Start the server
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
