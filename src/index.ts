@@ -1,43 +1,10 @@
 import { run, HandlerContext, xmtpClient } from "@xmtp/message-kit";
 import { Client } from "@xmtp/node-sdk";
 import { startServer } from "./lib/gated.js";
-import { Alchemy, Network } from "alchemy-sdk";
-
-const settings = {
-  apiKey: process.env.ALCHEMY_API_KEY, // Replace with your Alchemy API key
-  network: Network.ETH_MAINNET, // Use the appropriate network
-};
-
+import { verifiedRequest } from "./lib/nft.js";
 const { client } = await xmtpClient({ hideLog: true });
 startServer(client, verifiedRequest);
 
-const alchemy = new Alchemy(settings);
-
-async function verifiedRequest(
-  walletAddress: string,
-  groupId: string
-): Promise<boolean> {
-  console.log("new-request", {
-    groupId,
-    walletAddress,
-  });
-
-  try {
-    const nfts = await alchemy.nft.getNftsForOwner(walletAddress);
-    const collectionSlug = "xmtpeople"; // The slug for the collection
-
-    const ownsNft = nfts.ownedNfts.some(
-      (nft: any) =>
-        nft.contract.address.toLowerCase() === collectionSlug.toLowerCase()
-    );
-
-    return ownsNft as boolean;
-  } catch (error) {
-    console.error("Error fetching NFTs from Alchemy:", error);
-  }
-
-  return false;
-}
 run(async (context: HandlerContext) => {
   const {
     message: {
@@ -56,10 +23,9 @@ run(async (context: HandlerContext) => {
         client.accountAddress
       );
 
-      /* await context.reply(
-        `Group created!. Go to the new group:\nURL: https://converse.xyz/group/${group.id}`
-      );*/
-      await context.send(`You just been added to a new group!`);
+      await context.send(
+        `Group created!\n- Group Frame URL: https://converse.xyz/group/${group.id}: \n- This url will deelink to the group inside Converse\n- Once in the other group you can share the invite with your friends.`
+      );
       return;
     }
 
@@ -78,11 +44,7 @@ async function createGroup(
     senderAddress,
     clientAddress,
   ]);
-  await group.updateName(`New group`);
   const members = await group.members();
-  for (const member of members) {
-    console.log("member", member.accountAddresses);
-  }
   const senderMember = members.find((member) =>
     member.accountAddresses.includes(senderAddress.toLowerCase())
   );
@@ -96,7 +58,5 @@ async function createGroup(
   const superAdmin = await group.addSuperAdmin(senderInboxId);
   await group.send(`Welcome to the new group!`);
   await group.send(`You are now the admin of this group as well as the bot`);
-  await group.send(`The group id is:`);
-  await group.send(`${group.id}`);
   return group;
 }

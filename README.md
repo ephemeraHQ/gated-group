@@ -23,7 +23,7 @@ Command:
 This will log in the console:
 
 ```bash
-This group id is: 1242...2323
+This group id will look like: sd12d42...23s23
 ```
 
 ## Endpoint

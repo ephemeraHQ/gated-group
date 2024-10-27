@@ -46,7 +46,10 @@ export function startServer(
   });
   // Start the server
   const PORT = process.env.PORT || 3000;
+  const url = process.env.URL || `http://localhost:${PORT}`;
   app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.warn(
+      `Use this endpoint to add a wallet to a group indicated by the groupId\n${url}/add-wallet <body: {walletAddress, groupId}>`
+    );
   });
 }
