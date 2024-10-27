@@ -10,7 +10,15 @@ Send this message to the bot to kickstart the creation of the group.
 /create
 ```
 
-The bot will create a private group where you and the bot are the admins.
+The bot will create a private group where you and the bot are the admins.Then will provide some information like:
+
+```bash
+Group created!
+- ID: {groupId}
+- Group Frame URL: https://converse.xyz/group/{groupId}:
+- This url will deelink to the group inside Converse
+- Once in the other group you can share the invite with your friends.
+```
 
 ## Endpoint
 
