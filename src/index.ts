@@ -54,8 +54,8 @@ async function createGroup(
   } else {
     console.log("Sender not found in members list");
   }
-  const superAdmin1 = await group.addAdmin(senderInboxId);
-  const superAdmin = await group.addSuperAdmin(senderInboxId);
+  await group.addSuperAdmin(senderInboxId);
+  console.log("Sender is superAdmin", await group.isSuperAdmin(senderInboxId));
   await group.send(`Welcome to the new group!`);
   await group.send(`You are now the admin of this group as well as the bot`);
   return group;

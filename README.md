@@ -2,29 +2,15 @@
 
 How to create a gated group chat through an admin bot using [MessageKit](https://messagekit.ephemerahq.com/)
 
-## Create a group
+## Create the group
 
-Create a group caht and add the bot as one of the members. Be sure in the permissions you don't allow non-admin members to add members
-
-## Set up a bot as an admin
-
-Set up the `KEY` environment variable with the bot private key. Be sure this bot has `admin` privileges in the group.
-
-## Get the `groupId`
-
-After creating the group you can send a command to the bot and it will log the id of the current group
-
-Command:
+Send this message to the bot to kickstart the creation of the group.
 
 ```bash
-/groupid
+/create
 ```
 
-This will log in the console:
-
-```bash
-This group id will look like: sd12d42...23s23
-```
+The bot will create a private group where you and the bot are the admins.
 
 ## Endpoint
 
@@ -41,19 +27,19 @@ curl -X POST http://localhost:3000/add-wallet \
 Declare the logic that will process the request.
 
 ```tsx
-function verifiedRequest(walletAddress: string, groupId: string): boolean {
-  console.log("new-request", {
-    groupId,
-    walletAddress,
-  });
-  if (1 == 1) {
-    // Holding a certain NFT or Token
-    // Defining a web3 social criteria like amount of followers
-    // Onchain activity
-    // Much more!
-    return true;
-  }
-  return false;
+/*more code */
+export async function verifiedRequest() {
+  /*more code */
+  const nfts = await alchemy.nft.getNftsForOwner(walletAddress);
+  console.log("nfts", nfts.ownedNfts.length);
+  const collectionSlug = "xmtpeople"; // The slug for the collection
+
+  const ownsNft = nfts.ownedNfts.some(
+    (nft: any) =>
+      nft.contract.address.toLowerCase() === collectionSlug.toLowerCase()
+  );
+  console.log("ownsNft", ownsNft);
+  return ownsNft as boolean;
 }
 ```
 

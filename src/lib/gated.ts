@@ -19,16 +19,18 @@ export function startServer(
     const conversation = await client.conversations.getConversationById(
       groupId
     );
-
-    if (!verifiedRequest(walletAddress, groupId)) {
-      throw new Error("Request not verified");
-    }
-    console.log(`Adding wallet address: ${walletAddress} to the group`);
-    try {
-      await conversation?.addMembers([walletAddress]);
-      return `Wallet address ${walletAddress} added to the group`;
-    } catch (error: any) {
-      throw new Error(error.message);
+    const verified = await verifiedRequest(walletAddress, groupId);
+    if (!verified) {
+      console.log("User cant be added to the group");
+      throw new Error("User cant be added to the group");
+    } else {
+      try {
+        await conversation?.addMembers([walletAddress]);
+        console.log(`Added wallet address: ${walletAddress} to the group`);
+        return "success";
+      } catch (error: any) {
+        throw new Error(error.message);
+      }
     }
   }
 
