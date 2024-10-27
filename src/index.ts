@@ -28,9 +28,18 @@ run(async (context: HandlerContext) => {
       );
       return;
     }
+    context.send("👋 Welcome to the Gated Bot Group!");
+    context.send("To get started, type /create to set up a new group. 🚀");
+    context.send(
+      "This example will check if the user has a particular nft and add them to the group if they do."
+    );
 
-    context.send("Welcome to the gated bot group!");
-    context.send("Send /create to create a new group");
+    context.send(
+      "Once your group is created, you'll receive a unique Group ID and URL."
+    );
+    context.send(
+      "Share the URL with friends to invite them to join your group!"
+    );
   }
 });
 
